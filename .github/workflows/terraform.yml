@@ -26,21 +26,21 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: GitHubAction/Root/Dev
+        working-directory: Root/Dev
 
       - name: Terraform Format
         run: terraform fmt -check
-        working-directory: GitHubAction/Root/Dev
+        working-directory: Root/Dev
 
       - name: Terraform Plan
         run: terraform plan -input=false
-        working-directory: GitHubAction/Root/Dev
+        working-directory: Root/Dev
 
       - name: Terraform Apply
         if: github.event_name == 'push'
         run: terraform apply -input=false -auto-approve
-        working-directory: GitHubAction/Root/Dev
+        working-directory: Root/Dev
 
       - name: Save Terraform Output
         run: terraform output -json > terraform_output.json
-        working-directory: GitHubAction/Root/Dev
+        working-directory: Root/Dev
